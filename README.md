@@ -15,4 +15,11 @@ Run the build on each directory in containers:
 
 	bash ./build-all.sh
 
-Notably, the `tinyrss-web` step will take a while on the clone job, be patient !
+Notably, the `tinyrss-web` step will take a while on the `git-clone` job, be patient !
+
+## Deploy
+
+Should be as easy as
+
+	docker-compose tinyrss-app.yaml
+

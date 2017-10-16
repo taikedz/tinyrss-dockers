@@ -23,5 +23,3 @@ for containerdir in containers/* ; do
 done
 
 [[ "$failures" = 0 ]] || faile "$failures failed image builds !"
-
-# TODO - implement docker-compose step

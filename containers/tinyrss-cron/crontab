@@ -1,1 +1,1 @@
-* * * * * root php /path/to/update/job/php
+*/5 * * * * www-data /usr/bin/php /var/www/tt-rss/update.php --feeds --quiet

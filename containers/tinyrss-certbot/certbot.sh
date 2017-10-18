@@ -42,8 +42,16 @@ cb:new_cert() {
 	certbot run -d "$CERTBOT_FQDN" --apache -m "$CERTBOT_EMAIL" --agree-tos --no-eff-email
 }
 
+cb:needs_update() {
+	# placeholder
+	true
+}
+
 cb:main() {
 	if cb:has_le_cert; then
+		if ! cb:needs_update; then
+			return
+		fi
 		cb:renew_cert
 	else
 		cb:ensure_fqdn

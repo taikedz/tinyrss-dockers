@@ -32,6 +32,10 @@ Start/stop application:
 	$0 start
 	$0 stop
 
+Delete containers:
+
+	$0 rm
+
 Delete data:
 
 	$0 purge
@@ -51,9 +55,13 @@ dobuild() {
 }
 
 dopurge() {
+	dorm
+	docker volume rm "$DIRNAME"_{web,database}
+}
+
+dorm() {
 	docker-compose down
-	docker-compose rm
-	docker volume rm "$DIRNAME"_{web,database,certbot}
+	docker-compose rm || faile "Could not remove containers"
 }
 
 doautorestart() {
@@ -84,6 +92,9 @@ main() {
 	case "$action" in
 	build)
 		dobuild
+		;;
+	rm)
+		dorm
 		;;
 	purge)
 		dopurge

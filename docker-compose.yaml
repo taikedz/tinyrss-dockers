@@ -1,4 +1,4 @@
-version: '2'
+version: '3'
 services:
   web:
     depends_on:
@@ -11,22 +11,25 @@ services:
 
   db:
     image: "mariadb"
-    env_file: "containers/tinyrss-mariadb/environment-vars"
+    env_file: "./environment-vars"
     volumes:
       - "database:/var/lib/mysql"
 
 #  certbot:
-#    depends_on: web
-#    build: "containers/tinyrss-le"
-#    volumes:
-#      - web: /var/www
-#      - certbot: /etc/letsencrypt
-#
-#  cronupdate:
-#    build: "containers/tinyrss-cron"
+#    depends_on:
+#      - web
+#    build: "containers/tinyrss-certbot"
+#    env_file: "./environment-vars"
 #    volumes:
 #      - "web:/var/www"
+#      - "certbot:/etc/letsencrypt"
+
+  cronupdate:
+    build: "containers/tinyrss-cron"
+    volumes:
+      - "web:/var/www"
 
 volumes:
   database:
   web:
+  #certbot:

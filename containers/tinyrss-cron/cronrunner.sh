@@ -1,5 +1,8 @@
 #!/bin/bash
 
-touch /root/cron.log
+if [[ ! -f /cron.log ]]; then
+	touch /cron.log
+	chown www-data:www-data /cron.log
+fi
 
-cron && tail -f /root/cron.log
+cron && tail -f /cron.log

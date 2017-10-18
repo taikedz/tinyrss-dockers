@@ -1,1 +1,2 @@
 */5 * * * * www-data /usr/bin/php /var/www/tt-rss/update.php --feeds --quiet
+#*/5 * * * * www-data /usr/bin/php /var/www/tt-rss/update.php --feeds --quiet >> /cron.log

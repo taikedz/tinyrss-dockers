@@ -3,6 +3,7 @@ MAINTAINER tkedzierski@optos.com
 
 RUN apt-get update
 RUN apt-get install -y apache2 php libapache2-mod-php git ca-certificates
+RUN apt-get install -y apache2 php-mysql php-mbstring php-fdomdocument
 
 WORKDIR /var/www
 RUN rm -r html
@@ -16,6 +17,9 @@ VOLUME /etc/letsencrypt
 
 EXPOSE 80 443
 
+# Is not working: reowning
+RUN chown -R www-data:www-data /var/www/tt-rss
+RUN chmod -R 775 /var/www/tt-rss
 ADD apache.sh /apache.sh
 RUN chmod 755 /apache.sh
 

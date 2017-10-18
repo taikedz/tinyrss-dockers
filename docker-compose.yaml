@@ -1,0 +1,32 @@
+version: '2'
+services:
+  web:
+    depends_on:
+      - db
+    build: "containers/tinyrss-web"
+    ports:
+      - "80:80/tcp"
+    volumes:
+      - "web:/var/www"
+
+  db:
+    image: "mariadb"
+    env_file: "containers/tinyrss-mariadb/environment-vars"
+    volumes:
+      - "database:/var/lib/mysql"
+
+#  certbot:
+#    depends_on: web
+#    build: "containers/tinyrss-le"
+#    volumes:
+#      - web: /var/www
+#      - certbot: /etc/letsencrypt
+#
+#  cronupdate:
+#    build: "containers/tinyrss-cron"
+#    volumes:
+#      - "web:/var/www"
+
+volumes:
+  database:
+  web:

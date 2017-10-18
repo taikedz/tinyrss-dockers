@@ -1,6 +1,9 @@
+# Info for the MariaDB database
 MYSQL_USER=tinyrss
 MYSQL_PASSWORD=tinyrsspwd
 MYSQL_DATABASE=tinyrss
 MYSQL_ROOT_PASSWORD=thisISNOTaSecurePassword
+
+# Info to configure certbot container
 CERTBOT_FQDN=server.example.com
 CERTBOT_EMAIL=myemail@example.com

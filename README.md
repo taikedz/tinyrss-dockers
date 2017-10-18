@@ -1,6 +1,6 @@
 # TinyRSS with Docker Compose
 
-An excercise using Docker compose to make a TinyRSS installation, and manage it.
+An excercise using Docker Compose to make a TinyRSS installation, and manage it.
 
 ## Containers
 
@@ -11,14 +11,19 @@ An excercise using Docker compose to make a TinyRSS installation, and manage it.
 
 ## Usage
 
-Edit `containers/tinyrss-mariadb/environment-vars` and adjust the passwords as required
+Edit `environment-vars` and adjust the passwords as required ; also ensure that the desired domain name is added for certbot
 
 The following script performs the build, creation and execution of services.
 
-	bash ./build-and-run.sh
+	./run.sh build
 
 Notably, the `tinyrss-web` step will take a while on the `git-clone` job, be patient !
 
+Start and stop the containers:
+
+	./run.sh start
+	./run.sh stop
+
 You can now go to [http://localhost/](http://localhost/) to configure the application
 
-The database host is `db`, the rest is as configured in the `environment-vars` file previously mentioned.
+The database host is `db`, the rest is as configured in the `environment-vars` file.

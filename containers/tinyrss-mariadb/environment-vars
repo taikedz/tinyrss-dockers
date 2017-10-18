@@ -1,0 +1,4 @@
+MYSQL_USER=tinyrss
+MYSQL_PASSWORD=tinyrsspwd
+MYSQL_DATABASE=tinyrss
+MYSQL_ROOT_PASSWORD=thisISNOTaSecurePassword

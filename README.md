@@ -9,17 +9,16 @@ An excercise using Docker compose to make a TinyRSS installation, and manage it.
 * MySQL data
 * letencrypt
 
-## Build
+## Usage
 
-Run the build on each directory in containers:
+Edit `containers/tinyrss-mariadb/environment-vars` and adjust the passwords as required
 
-	bash ./build-all.sh
+The following script performs the build, creation and execution of services.
+
+	bash ./build-and-run.sh
 
 Notably, the `tinyrss-web` step will take a while on the `git-clone` job, be patient !
 
-## Deploy
+You can now go to [http://localhost/](http://localhost/) to configure the application
 
-Should be as easy as
-
-	docker-compose tinyrss-app.yaml
-
+The database host is `db`, the rest is as configured in the `environment-vars` file previously mentioned.

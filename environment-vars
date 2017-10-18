@@ -2,3 +2,5 @@ MYSQL_USER=tinyrss
 MYSQL_PASSWORD=tinyrsspwd
 MYSQL_DATABASE=tinyrss
 MYSQL_ROOT_PASSWORD=thisISNOTaSecurePassword
+CERTBOT_FQDN=server.example.com
+CERTBOT_EMAIL=myemail@example.com

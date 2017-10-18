@@ -15,7 +15,7 @@ get_dirname() {
 	if [[ -f "$DIRNAMESTORE" ]]; then
 		. "$DIRNAMESTORE"
 	else
-		DIRNAME="$(basename "$(dirname "$0")")"
+		DIRNAME="$(basename "$PWD" | sed -r 's/[^a-zA-Z0-9]+//g')"
 		echo "DIRNAME='$DIRNAME'" > "$DIRNAMESTORE"
 	fi
 }
@@ -23,13 +23,14 @@ get_dirname() {
 printhelp() {
 cat <<EOF
 
-Build project:
+Build/rebuild images and containers:
 
 	$0 build
 
-Run application:
+Start/stop application:
 
-	$0 run
+	$0 start
+	$0 stop
 
 Delete data:
 
@@ -49,12 +50,10 @@ dobuild() {
 	docker-compose create || faile "(Re-)Creation of containers failed"
 }
 
-dorun() {
-	docker-compose up
-}
-
 dopurge() {
-	docker-compose rm && docker volume rm "$DIRNAME"_database "$DIRNAME"_web
+	docker-compose down
+	docker-compose rm
+	docker volume rm "$DIRNAME"_{web,database,certbot}
 }
 
 doautorestart() {
@@ -70,6 +69,14 @@ doautorestart() {
 	esac
 }
 
+dostop() {
+	docker-compose down
+}
+
+dostart() {
+	docker-compose up -d
+}
+
 main() {
 	local action="$1"; shift
 	get_dirname
@@ -78,17 +85,22 @@ main() {
 	build)
 		dobuild
 		;;
-	run)
-		dorun
-		;;
 	purge)
 		dopurge
 		;;
 	autorestart)
 		doautorestart
 		;;
+	start)
+		dostart
+		;;
+	stop)
+		dostop
+		;;
 	*)
 		printhelp
 		;;
 	esac
 }
+
+main "$@"

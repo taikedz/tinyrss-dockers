@@ -1,5 +1,5 @@
 FROM ubuntu:latest
-MAINTAINER tkedzierski@optos.com
+MAINTAINER dch.tai@gmail.com
 
 RUN apt-get update
 RUN apt-get install -y apache2 php libapache2-mod-php git ca-certificates
@@ -15,7 +15,8 @@ RUN ln -s /var/www/tt-rss html
 EXPOSE 80 443
 
 RUN chown -R www-data:www-data /var/www/tt-rss
-RUN chmod -R 775 /var/www/tt-rss
+RUN find /var/www/tt-rss -type d -exec chmod -R 775 {} \; >/dev/null
+RUN find /var/www/tt-rss -type f -exec chmod -R 664 {} \; >/dev/null
 ADD apache.sh /apache.sh
 RUN chmod 755 /apache.sh
 

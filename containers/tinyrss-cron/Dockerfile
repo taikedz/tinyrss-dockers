@@ -1,8 +1,9 @@
-FROM alpine:latest
-MAINTAINER tkedzierski@optos.com
+FROM ubuntu:latest
+MAINTAINER dch.tai@gmail.com
 
-RUN apk update
-RUN apk add php7 php7-cli
+RUN apt-get update
+RUN apt-get install -y php php-cli
+RUN apt-get install -y cron
 
 ADD cronrunner.sh /cronrunner.sh
 RUN chmod 755 /cronrunner.sh

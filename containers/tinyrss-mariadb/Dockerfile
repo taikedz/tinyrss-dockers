@@ -1,5 +1,5 @@
 FROM mariadb:latest
-MAINTAINER tkedzierski@optos.com
+MAINTAINER dch.tai@gmail.com
 
 ENV MYSQL_USER=tinyrss
 ENV MYSQL_PASSWORD="tinyrss-root-password"

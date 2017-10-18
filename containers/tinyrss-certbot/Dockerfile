@@ -1,5 +1,5 @@
 FROM ubuntu:latest
-MAINTAINER tkedzierski@optos.com
+MAINTAINER dch.tai@gmail.com
 
 RUN apt-get update
 RUN apt-get install software-properties-common -y
